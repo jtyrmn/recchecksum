@@ -1,5 +1,6 @@
 mod reader;
 mod filter;
+mod hash;
 
 use reader::directory_tree_reader::DirectoryTreeReader;
 use reader::directory_tree_reader::DirectoryTreeReaderImpl;
@@ -12,7 +13,7 @@ fn main() {
     opts.follow_symlinks = true;
 
     let dir_tree_reader: DirectoryTreeReaderImpl =
-        DirectoryTreeReaderImpl::new(".".as_ref(), opts).unwrap_or_else(|e| panic!("{}", e));
+        DirectoryTreeReaderImpl::new(".", opts).unwrap_or_else(|e| panic!("{}", e));
 
     for file_entry in dir_tree_reader.iter().take(100) {
         println!(

@@ -39,10 +39,10 @@ pub struct DirectoryTreeReaderImpl {
 
 impl DirectoryTreeReaderImpl {
     pub fn new(
-        root_directory: &Path,
+        root_directory: impl AsRef<Path>,
         opts: DirectoryTreeReaderOpts,
     ) -> Result<DirectoryTreeReaderImpl, std::io::Error> {
-        let root_directory = root_directory.canonicalize()?;
+        let root_directory = root_directory.as_ref().canonicalize()?;
 
         Ok(DirectoryTreeReaderImpl {
             root_directory,
